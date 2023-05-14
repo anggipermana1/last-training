@@ -1,0 +1,470 @@
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ alias graph="git log --all --oneline --decorate --graph"
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* db66699 (HEAD -> main) commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git commit -am "commit 2"
+[main 9952595] commit 2
+ 1 file changed, 10 insertions(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* 9952595 (HEAD -> main) commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout -b feature
+Switched to a new branch 'feature'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git branch
+* feature
+  main
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 9952595 (HEAD -> feature, main) commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -am "commit fitur 1"
+[feature 430c6a9] commit fitur 1
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 430c6a9 (HEAD -> feature) commit fitur 1
+* 9952595 (main) commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout main
+Switched to branch 'main'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git commit -am "commit 3"
+[main b11cf81] commit 3
+ 1 file changed, 3 insertions(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* b11cf81 (HEAD -> main) commit 3
+| * 430c6a9 (feature) commit fitur 1
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git commit -am "commit 4"
+[main 2f27a3f] commit 4
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout feature
+Switched to branch 'feature'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -am "commit fitur 2"^C
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -am "commit fitur 2"
+[feature a238132] commit fitur 2
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* a238132 (HEAD -> feature) commit fitur 2
+* 430c6a9 commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -am "commit fitur 3"
+[feature 985ad87] commit fitur 3
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 985ad87 (HEAD -> feature) commit fitur 3
+* a238132 commit fitur 2
+* 430c6a9 commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git rebase main
+Successfully rebased and updated refs/heads/feature.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 94eb57e (HEAD -> feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git reset HEAD~1
+Unstaged changes after reset:
+M       index.html
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 278692b (HEAD -> feature) commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -am "commit fitur 3"
+[feature f8fc37d] commit fitur 3
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* f8fc37d (HEAD -> feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout 2f27a3f
+Note: switching to '2f27a3f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 2f27a3f commit 4
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training ((2f27a3f...))
+$ graph
+* f8fc37d (feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (HEAD, main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training ((2f27a3f...))
+$ git checkout -b feature2
+Switched to a new branch 'feature2'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* f8fc37d (feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (HEAD -> feature2, main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git commit -am "commit fitur2 1"
+[feature2 37626b5] commit fitur2 1
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* 37626b5 (HEAD -> feature2) commit fitur2 1
+| * f8fc37d (feature) commit fitur 3
+| * 278692b commit fitur 2
+| * a2373cd commit fitur 1
+|/
+* 2f27a3f (main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git reset HEAD~1
+Unstaged changes after reset:
+M       index.html
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* f8fc37d (feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (HEAD -> feature2, main) commit 4
+* b11cf81 commit 3
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git reset --hard HEAD~2
+HEAD is now at 9952595 commit 2
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* f8fc37d (feature) commit fitur 3
+* 278692b commit fitur 2
+* a2373cd commit fitur 1
+* 2f27a3f (main) commit 4
+* b11cf81 commit 3
+* 9952595 (HEAD -> feature2) commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git commit -am "commit fitur2 1"
+[feature2 eadc333] commit fitur2 1
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* eadc333 (HEAD -> feature2) commit fitur2 1
+| * f8fc37d (feature) commit fitur 3
+| * 278692b commit fitur 2
+| * a2373cd commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git commit -am "commit fitur2 2"
+[feature2 74b6971] commit fitur2 2
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* 74b6971 (HEAD -> feature2) commit fitur2 2
+* eadc333 commit fitur2 1
+| * f8fc37d (feature) commit fitur 3
+| * 278692b commit fitur 2
+| * a2373cd commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git commit -am "commit fitur2 3"
+[feature2 5a90c0e] commit fitur2 3
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ graph
+* 5a90c0e (HEAD -> feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+| * f8fc37d (feature) commit fitur 3
+| * 278692b commit fitur 2
+| * a2373cd commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git checkout feature
+Switched to branch 'feature'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+| * f8fc37d (HEAD -> feature) commit fitur 3
+| * 278692b commit fitur 2
+| * a2373cd commit fitur 1
+| * 2f27a3f (main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git reset --hard HEAD~3
+HEAD is now at 2f27a3f commit 4
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+| * 2f27a3f (HEAD -> feature, main) commit 4
+| * b11cf81 commit 3
+|/  
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git branch -d feature
+error: Cannot delete branch 'feature' checked out at 'C:/Users/dell/Desktop/last-training'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git branch -D feature
+error: Cannot delete branch 'feature' checked out at 'C:/Users/dell/Desktop/last-training'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git branch main
+fatal: a branch named 'main' already exists
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout main
+Switched to branch 'main'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git branch -d feature
+Deleted branch feature (was 2f27a3f).
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+| * 2f27a3f (HEAD -> main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git branch rename feature2 feature
+usage: git branch [<options>] [-r | -a] [--merged] [--no-merged]
+   or: git branch [<options>] [-f] [--recurse-submodules] <branch-name> [<start-point>]
+   or: git branch [<options>] [-l] [<pattern>...]
+   or: git branch [<options>] [-r] (-d | -D) <branch-name>...
+   or: git branch [<options>] (-m | -M) [<old-branch>] <new-branch>
+   or: git branch [<options>] (-c | -C) [<old-branch>] <new-branch>
+   or: git branch [<options>] [-r | -a] [--points-at]
+   or: git branch [<options>] [-r | -a] [--format]
+
+Generic options
+    -v, --verbose         show hash and subject, give twice for upstream branch
+    -q, --quiet           suppress informational messages
+    -t, --track[=(direct|inherit)]
+                          set branch tracking configuration
+    -u, --set-upstream-to <upstream>
+                          change the upstream info
+    --unset-upstream      unset the upstream info
+    --color[=<when>]      use colored output
+    -r, --remotes         act on remote-tracking branches
+    --contains <commit>   print only branches that contain the commit
+    --no-contains <commit>
+                          print only branches that don't contain the commit
+    --abbrev[=<n>]        use <n> digits to display object names
+
+Specific git-branch actions:
+    -a, --all             list both remote-tracking and local branches
+    -d, --delete          delete fully merged branch
+    -D                    delete branch (even if not merged)
+    -m, --move            move/rename a branch and its reflog
+    -M                    move/rename a branch, even if target exists
+    -c, --copy            copy a branch and its reflog
+    -C                    copy a branch, even if target exists
+    -l, --list            list branch names
+    --show-current        show current branch name
+    --create-reflog       create the branch's reflog
+    --edit-description    edit the description for the branch
+    -f, --force           force creation, move/rename, deletion
+    --merged <commit>     print only branches that are merged
+    --no-merged <commit>  print only branches that are not merged
+    --column[=<style>]    list branches in columns
+    --sort <key>          field name to sort on
+    --points-at <object>  print only branches of the object
+    -i, --ignore-case     sorting and filtering are case insensitive
+    --recurse-submodules  recurse through submodules
+    --format <format>     format to use for the output
+
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+| * 2f27a3f (HEAD -> main) commit 4
+| * b11cf81 commit 3
+|/
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git rebase feature2
+Successfully rebased and updated refs/heads/main.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* ef5d9a9 (HEAD -> main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout feature
+error: pathspec 'feature' did not match any file(s) known to git
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout feature2
+Switched to branch 'feature2'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git branch -m feature
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* ef5d9a9 (main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e (HEAD -> feature) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout feature
+Already on 'feature'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git rebase main
+Successfully rebased and updated refs/heads/feature.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* ef5d9a9 (HEAD -> feature, main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$
