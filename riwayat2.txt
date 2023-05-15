@@ -209,4 +209,289 @@ $ graph
 * db66699 commit 1
 
 dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git commit -am "test 3"
+[main f96ee11] test 3
+ 1 file changed, 212 insertions(+)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* f96ee11 (HEAD -> main) test 3
+* 62564c4 test 2
+* eeb3736 test 1
+* 5b2890b (origin/main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git checkout feature
+Switched to branch 'feature'
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ graph
+* f96ee11 (main) test 3
+* 62564c4 test 2
+* eeb3736 test 1
+* 5b2890b (HEAD -> feature, origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git add .
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git commit -m "cabang 1"
+[feature b327109] cabang 1
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 riwayat2.txt
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ graph
+* b327109 (HEAD -> feature) cabang 1
+| * f96ee11 (main) test 3
+| * 62564c4 test 2
+| * eeb3736 test 1
+|/
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git commit -am "cabang 2"
+[feature d5125da] cabang 2
+ 1 file changed, 1 insertion(+)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ graph
+* d5125da (HEAD -> feature) cabang 2
+* b327109 cabang 1
+| * f96ee11 (main) test 3
+| * 62564c4 test 2
+| * eeb3736 test 1
+|/
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* d5125da (feature) cabang 2
+* b327109 cabang 1
+| * f96ee11 (HEAD -> main) test 3
+| * 62564c4 test 2
+| * eeb3736 test 1
+|/
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git rebase feature
+Auto-merging riwayat2.txt
+CONFLICT (content): Merge conflict in riwayat2.txt
+error: could not apply f96ee11... test 3
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply f96ee11... test 3
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main|REBASE 3/3)
+$ git rebase --continue
+riwayat2.txt: needs merge
+You must edit all merge conflicts and then
+mark them as resolved using git add
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main|REBASE 3/3)
+$ graph
+* 73cc239 (HEAD) test 2
+* d07b017 test 1
+* d5125da (feature) cabang 2
+* b327109 cabang 1
+| * f96ee11 (main) test 3
+| * 62564c4 test 2
+| * eeb3736 test 1
+|/  
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main|REBASE 3/3)
+$ git commit -am "test 3"
+[detached HEAD f41eb27] test 3
+ 1 file changed, 212 insertions(+), 1 deletion(-)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main|REBASE 3/3)
+$ graph
+* f41eb27 (HEAD) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da (feature) cabang 2
+* b327109 cabang 1
+| * f96ee11 (main) test 3
+| * 62564c4 test 2
+| * eeb3736 test 1
+|/
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main|REBASE 3/3)
+$ git rebase --continue
+Successfully rebased and updated refs/heads/main.
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* f41eb27 (HEAD -> main) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da (feature) cabang 2
+* b327109 cabang 1
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git checkout feature
+Switched to branch 'feature'
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git merge main
+Updating d5125da..f41eb27
+Fast-forward
+ riwayat2.txt | 213 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 212 insertions(+), 1 deletion(-)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ graph
+* f41eb27 (HEAD -> feature, main) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da cabang 2
+* b327109 cabang 1
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (feature)
+$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* f41eb27 (HEAD -> main, feature) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da cabang 2
+* b327109 cabang 1
+* 5b2890b (origin/main) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git push -u origin main
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (11/11), 2.06 KiB | 527.00 KiB/s, done.
+Total 11 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 1 local object.
+To https://github.com/anggipermana1/last-training.git
+   5b2890b..f41eb27  main -> main
+branch 'main' set up to track 'origin/main'.
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* f41eb27 (HEAD -> main, origin/main, feature) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da cabang 2
+* b327109 cabang 1
+* 5b2890b menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git branch -d feature
+Deleted branch feature (was f41eb27).
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* f41eb27 (HEAD -> main, origin/main) test 3
+* 73cc239 test 2
+* d07b017 test 1
+* d5125da cabang 2
+* b327109 cabang 1
+* 5b2890b menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
 $
