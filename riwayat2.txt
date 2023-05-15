@@ -1,1 +1,212 @@
-Cabang
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git rebase feature2
+Successfully rebased and updated refs/heads/main.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* ef5d9a9 (HEAD -> main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e (feature2) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout feature
+error: pathspec 'feature' did not match any file(s) known to git
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git checkout feature2
+Switched to branch 'feature2'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature2)
+$ git branch -m feature
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* ef5d9a9 (main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e (HEAD -> feature) commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout feature
+Already on 'feature'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git rebase main
+Successfully rebased and updated refs/heads/feature.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* ef5d9a9 (HEAD -> feature, main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git add .
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git commit -m "menambahkan riwayat.txt"
+[feature 5b2890b] menambahkan riwayat.txt
+ 1 file changed, 470 insertions(+)
+ create mode 100644 riwayat.txt
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ graph
+* 5b2890b (HEAD -> feature) menambahkan riwayat.txt
+* ef5d9a9 (main) commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (feature)
+$ git checkout main
+Switched to branch 'main'
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git rebase feature
+Successfully rebased and updated refs/heads/main.
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ graph
+* 5b2890b (HEAD -> main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git remote -v
+origin  https://github.com/anggipermana1/last-training.git (fetch)
+origin  https://github.com/anggipermana1/last-training.git (push)
+
+dell@DESKTOP-AJLDJKS MINGW64 ~/Desktop/last-training (main)
+$ git push -u origin main
+Enumerating objects: 24, done.
+Counting objects: 100% (24/24), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (21/21), done.
+Writing objects: 100% (24/24), 4.27 KiB | 624.00 KiB/s, done.
+Total 24 (delta 10), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (10/10), done.
+To https://github.com/anggipermana1/last-training.git
+ * [new branch]      main -> main
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ alias graph="git log --all --decorate --oneline --graph"
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* 5b2890b (HEAD -> main, origin/main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git add riwayat2.txt text.txt
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git commit -am "test 1"
+[main eeb3736] test 1
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 riwayat2.txt
+ create mode 100644 text.txt
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* eeb3736 (HEAD -> main) test 1
+* 5b2890b (origin/main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    text.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git commit -m "test 2"
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    text.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* eeb3736 (HEAD -> main) test 1
+* 5b2890b (origin/main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git commit -am "test 2"
+[main 62564c4] test 2
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 text.txt
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$ graph
+* 62564c4 (HEAD -> main) test 2
+* eeb3736 test 1
+* 5b2890b (origin/main, feature) menambahkan riwayat.txt
+* ef5d9a9 commit 4
+* 5ecf71b commit 3
+* 5a90c0e commit fitur2 3
+* 74b6971 commit fitur2 2
+* eadc333 commit fitur2 1
+* 9952595 commit 2
+* db66699 commit 1
+
+dell@DESKTOP-AJLDJKS MSYS ~/Desktop/last-training (main)
+$
